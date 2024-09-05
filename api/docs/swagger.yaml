@@ -1,0 +1,234 @@
+definitions:
+  models.ChangePasswordRequest:
+    properties:
+      current_password:
+        type: string
+      new_password:
+        type: string
+    type: object
+  models.CreateUser:
+    properties:
+      email:
+        type: string
+      password_hash:
+        type: string
+      role:
+        type: string
+      user_name:
+        type: string
+    type: object
+  models.ForgotPasswordRequest:
+    properties:
+      email:
+        type: string
+    type: object
+  models.LoginRequest:
+    properties:
+      email:
+        type: string
+      password_hash:
+        type: string
+    type: object
+  models.Message:
+    properties:
+      message:
+        type: string
+    type: object
+  models.ResetPasswordRQ:
+    properties:
+      new_password:
+        type: string
+      reset_token:
+        type: string
+    type: object
+  models.Response:
+    properties:
+      data: {}
+      description:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+  models.Token:
+    properties:
+      access_token:
+        type: string
+      expired_time:
+        type: number
+      refresh_token:
+        type: string
+    type: object
+  models.User:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      password_hash:
+        type: string
+      role:
+        type: string
+      updated_at:
+        type: string
+      user_name:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Task Management System Auth
+  title: Task Management System Auth
+  version: "1"
+paths:
+  /auth_service/change_password:
+    post:
+      consumes:
+      - application/json
+      description: Change password
+      parameters:
+      - description: body
+        in: body
+        name: auth
+        required: true
+        schema:
+          $ref: '#/definitions/models.ChangePasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Message'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Change password
+      tags:
+      - auth
+  /auth_service/forgot_password:
+    post:
+      consumes:
+      - application/json
+      description: Forgot password
+      parameters:
+      - description: body
+        in: body
+        name: auth
+        required: true
+        schema:
+          $ref: '#/definitions/models.ForgotPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Message'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Forgot password
+      tags:
+      - auth
+  /auth_service/login:
+    post:
+      consumes:
+      - application/json
+      description: Login user
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Token'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Login user
+      tags:
+      - auth
+  /auth_service/register:
+    post:
+      consumes:
+      - application/json
+      description: Register new user
+      parameters:
+      - description: body
+        in: body
+        name: auth
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Register new user
+      tags:
+      - auth
+  /auth_service/reset_password:
+    post:
+      consumes:
+      - application/json
+      description: Reset password
+      parameters:
+      - description: body
+        in: body
+        name: auth
+        required: true
+        schema:
+          $ref: '#/definitions/models.ResetPasswordRQ'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Message'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Reset password
+      tags:
+      - auth
+swagger: "2.0"

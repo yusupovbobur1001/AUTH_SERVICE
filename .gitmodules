@@ -1,0 +1,3 @@
+[submodule "PRODUCTS"]
+	path = PRODUCTS
+	url = git@github.com:yusupovbobur1001/PRODUCTS.git
