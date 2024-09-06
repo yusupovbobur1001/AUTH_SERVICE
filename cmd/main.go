@@ -47,8 +47,8 @@ func main() {
 
 	r := api.Router(h)
 	go func() {
-		log.Info("HTTP server is running on port :8075")
-		if err := r.Run(":8075"); err != nil {
+		log.Info("HTTP server is running on port :8070")
+		if err := r.Run(":8070"); err != nil {
 			log.Error("Error while running HTTP server", logger.Error(err))
 		}
 	}()
